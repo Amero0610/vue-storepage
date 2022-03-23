@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 22:29:49
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-23 22:29:49
+ * @LastEditTime: 2022-03-24 01:54:01
  * @FilePath: \vue-storepage\src\plugins\element.js
  * @email: vian8416@163.com
  */

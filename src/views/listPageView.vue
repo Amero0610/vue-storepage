@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:30
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 00:47:28
+ * @LastEditTime: 2022-03-24 02:00:27
  * @FilePath: \vue-storepage\src\views\listpageView.vue
  * @email: vian8416@163.com
 -->
@@ -53,7 +53,7 @@
         </el-table-column>
         <el-table-column label="Url" property="url" show-overflow-tooltip>
         </el-table-column>
-        <el-table-column align="right" width="200">
+        <el-table-column align="right" width="230">
           <template slot-scope="scope">
             <el-button
               size="mini"
@@ -172,7 +172,6 @@ export default {
       this.deleteListItem(fileName);
     },
     setEmptyPanel() {
-      console.log(1);
       if (this.fileList.length == 0) {
         this.showEmpty = true;
       } else {
@@ -184,7 +183,6 @@ export default {
     fileList: {
       handler() {
         this.setEmptyPanel();
-        console.log(1);
       },
       deep: true,
     },

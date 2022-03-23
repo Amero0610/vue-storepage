@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:45
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 00:36:07
+ * @LastEditTime: 2022-03-24 01:53:37
  * @FilePath: \vue-storepage\src\views\uploadPageView.vue
  * @email: vian8416@163.com
 -->
@@ -110,6 +110,7 @@ export default {
     handleSuccess(response, file, fileList) {
       this.fileList = fileList;
       this.$emit("on-success", file, fileList);
+      
     },
     toShowList() {
       this.$router.push("/filelist");
@@ -126,6 +127,7 @@ export default {
         spinner: "el-icon-loading",
         background: "rgba(0, 0, 0, 0.7)",
       });
+      
 
       console.log(option);
       put(option.file.name, option.file)
@@ -153,7 +155,6 @@ export default {
       this.fileList = [];
     },
     setBtnDisable() {
-
       if (this.fileList.length == 0) {
         this.isDisable = true;
       } else {
@@ -164,9 +165,10 @@ export default {
   watch: {
     fileList: {
       handler() {
+      
         this.setBtnDisable();
       },
-      deep: true,
+      deep:true
     },
   },
 };
