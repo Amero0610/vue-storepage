@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:30
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 12:42:11
+ * @LastEditTime: 2022-03-24 23:46:42
  * @FilePath: \vue-storepage\src\views\listPageView.vue
  * @email: vian8416@163.com
 -->
@@ -24,7 +24,6 @@
         <el-table-column label="Name"
                          property="name"
                          align="left"
-                         width="260"
                          min-width="260"
                          show-overflow-tooltip>
           <template slot-scope="scope">{{
@@ -35,7 +34,7 @@
                          property="size"
                          align="left"
                          width="90"
-                         min-width="90">
+                         min-width="120">
           <template slot-scope="scope">{{
             scope.row.size | sizeFilter
           }}</template>
@@ -54,6 +53,7 @@
                          show-overflow-tooltip>
         </el-table-column>
         <el-table-column align="right"
+                         min-width="230"
                          width="230">
           <template slot-scope="scope">
             <el-button size="mini"
