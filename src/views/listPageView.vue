@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:30
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 02:00:27
+ * @LastEditTime: 2022-03-24 10:45:29
  * @FilePath: \vue-storepage\src\views\listpageView.vue
  * @email: vian8416@163.com
 -->
@@ -10,68 +10,59 @@
 <template>
   <div id="listpage">
     <!-- <el-button type="primary" @click="addItem"> add</el-button> -->
-    <el-button type="primary" plain @click="refreshList" icon="el-icon-notebook-2"
-      >Refresh list</el-button
-    >
+    <el-button type="primary"
+               plain
+               @click="refreshList"
+               icon="el-icon-notebook-2">Refresh list</el-button>
     <div id="tablePanel">
-      <el-empty description="No Data" v-if="showEmpty"></el-empty>
-      <el-table
-        v-if="!showEmpty"
-        :data="fileList"
-        highlight-current-row
-        @current-change="handleCurrentChange"
-      >
-        <el-table-column
-          label="Name"
-          property="name"
-          align="left"
-          show-overflow-tooltip
-        >
+      <el-empty description="No Data"
+                v-if="showEmpty"></el-empty>
+      <el-table v-if="!showEmpty"
+                :data="fileList"
+                highlight-current-row
+                @current-change="handleCurrentChange">
+        <el-table-column label="Name"
+                         property="name"
+                         align="left"
+                         show-overflow-tooltip>
           <template slot-scope="scope">{{
             scope.row.name | nameFilter
           }}</template>
         </el-table-column>
-        <el-table-column
-          label="Size"
-          property="size"
-          align="left"
-          min-width="90"
-        >
+        <el-table-column label="Size"
+                         property="size"
+                         align="left"
+                         min-width="90">
           <template slot-scope="scope">{{
             scope.row.size | sizeFilter
           }}</template>
         </el-table-column>
-        <el-table-column
-          label="Time"
-          prop="lastModified"
-          align="left"
-          min-width="120"
-        >
+        <el-table-column label="Time"
+                         prop="lastModified"
+                         align="left"
+                         min-width="120">
           <template slot-scope="scope">{{
             scope.row.lastModified | lastModifiedFilter
           }}</template>
         </el-table-column>
-        <el-table-column label="Url" property="url" show-overflow-tooltip>
+        <el-table-column label="Url"
+                         property="url"
+                         show-overflow-tooltip>
         </el-table-column>
-        <el-table-column align="right" width="230">
+        <el-table-column align="right"
+                         width="230">
           <template slot-scope="scope">
-            <el-button
-              size="mini"
-              type="success"
-              icon="el-icon-copy-document"
-              @click="copyUrl(scope.row)"
-              v-clipboard:copy="scope.row.url"
-              >Copy</el-button
-            >
-            <el-button
-              size="mini"
-              type="danger"
-              plain
-              icon="el-icon-delete"
-              @click="confirmDelete(scope.row)"
-            >
-              Delete</el-button
-            >
+            <el-button size="mini"
+                       type="success"
+                       icon="el-icon-copy-document"
+                       @click="copyUrl(scope.row)"
+                       v-clipboard:copy="scope.row.url">Copy</el-button>
+            <el-button size="mini"
+                       type="danger"
+                       plain
+                       icon="el-icon-delete"
+                       @click="confirmDelete(scope.row)">
+              Delete</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -103,7 +94,7 @@ export default {
     ],
   }),
   methods: {
-    addItem() {
+    addItem () {
       let tempObj = new Object();
       tempObj.name = "321" + INDEX;
       tempObj.url = "dsa" + INDEX;
@@ -112,7 +103,7 @@ export default {
       INDEX++;
       this.fileList.push(tempObj);
     },
-    refreshList() {
+    refreshList () {
       const loading = this.$loading({
         lock: true,
         text: "Loading",
@@ -125,15 +116,15 @@ export default {
         console.log(result);
       });
     },
-    handleCurrentChange() {},
-    copyUrl(option) {
+    handleCurrentChange () { },
+    copyUrl (option) {
       console.log(option);
       this.$message({
         type: "success",
         message: "The link has been copied to the clipboard!",
       });
     },
-    confirmDelete(_option) {
+    confirmDelete (_option) {
       this.$confirm("Do you want to delete this file?", "Tip", {
         confirmButtonText: "Confirm",
         cancelButtonText: "Cancel",
@@ -149,14 +140,14 @@ export default {
           });
         });
     },
-    deleteListItem(_name) {
+    deleteListItem (_name) {
       for (let i = 0; i < this.fileList.length; i++) {
         if (this.fileList[i].name == _name) {
           this.fileList.splice(i, 1);
         }
       }
     },
-    deleteItem(option) {
+    deleteItem (option) {
       this.$message({
         type: "success",
         message: "Successfully deleted!",
@@ -171,7 +162,7 @@ export default {
         });
       this.deleteListItem(fileName);
     },
-    setEmptyPanel() {
+    setEmptyPanel () {
       if (this.fileList.length == 0) {
         this.showEmpty = true;
       } else {
@@ -181,22 +172,22 @@ export default {
   },
   watch: {
     fileList: {
-      handler() {
+      handler () {
         this.setEmptyPanel();
       },
       deep: true,
     },
   },
-  mounted() {
+  mounted () {
     this.refreshList();
     this.setEmptyPanel();
   },
   filters: {
-    nameFilter(remote_filename) {
+    nameFilter (remote_filename) {
       let filenameArray = remote_filename.split("/");
       return filenameArray[filenameArray.length - 1];
     },
-    sizeFilter(size) {
+    sizeFilter (size) {
       var data = "";
       if (size < 0.1 * 1024) {
         data = size.toFixed(2) + "B";
@@ -215,7 +206,7 @@ export default {
       }
       return sizestr;
     },
-    lastModifiedFilter(remote_lastModified) {
+    lastModifiedFilter (remote_lastModified) {
       let date2 = new Date(remote_lastModified);
       return date2.toLocaleString().substring(5, date2.toLocaleString().length);
     },

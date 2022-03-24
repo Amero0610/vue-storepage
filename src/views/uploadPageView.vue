@@ -2,59 +2,48 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:45
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 01:53:37
+ * @LastEditTime: 2022-03-24 10:39:41
  * @FilePath: \vue-storepage\src\views\uploadPageView.vue
  * @email: vian8416@163.com
 -->
 <template>
   <div>
-    <el-upload
-      ref="uploadMutiple"
-      class="upload-demo"
-      action
-      :http-request="handleUpload"
-      :on-preview="handlePreview"
-      :on-remove="handleRemove"
-      :on-success="handleSuccess"
-      :before-remove="beforeRemove"
-      :on-change="handleChange"
-      multiple
-      :limit="limit"
-      :on-exceed="handleExceed"
-      :file-list="fileList"
-      :list-type="listType"
-      :auto-upload="false"
-    >
-      <el-button
-        plain
-        slot="trigger"
-        size="normal"
-        type="primary"
-        class="uploadpageButton"
-        icon="el-icon-folder-add"
-        >Select file</el-button
-      >
-      <el-button
-        :disabled="isDisable"
-        plain
-        class="uploadpageButton"
-        size="normal"
-        type="success"
-        @click="submitUpload"
-        icon="el-icon-upload2"
-        >Upload to server</el-button
-      >
-      <el-button
-        :disabled="isDisable"
-        plain
-        type="primary"
-        @click="clearList"
-        class="uploadpageButton"
-        icon="el-icon-delete"
-        size="normal"
-      >
-        Clear List</el-button
-      >
+    <el-upload ref="uploadMutiple"
+               class="upload-demo"
+               action
+               :http-request="handleUpload"
+               :on-preview="handlePreview"
+               :on-remove="handleRemove"
+               :on-success="handleSuccess"
+               :before-remove="beforeRemove"
+               :on-change="handleChange"
+               multiple
+               :limit="limit"
+               :on-exceed="handleExceed"
+               :file-list="fileList"
+               :list-type="listType"
+               :auto-upload="false">
+      <el-button plain
+                 slot="trigger"
+                 size="normal"
+                 type="primary"
+                 class="uploadpageButton"
+                 icon="el-icon-folder-add">Select file</el-button>
+      <el-button :disabled="isDisable"
+                 plain
+                 class="uploadpageButton"
+                 size="normal"
+                 type="success"
+                 @click="submitUpload"
+                 icon="el-icon-upload2">Upload to server</el-button>
+      <el-button :disabled="isDisable"
+                 plain
+                 type="primary"
+                 @click="clearList"
+                 class="uploadpageButton"
+                 icon="el-icon-delete"
+                 size="normal">
+        Clear List</el-button>
     </el-upload>
   </div>
 </template>
@@ -73,7 +62,7 @@ export default {
     },
     headers: {
       type: Object,
-      default: () => {},
+      default: () => { },
     },
     name: {
       type: String,
@@ -90,44 +79,42 @@ export default {
   }),
 
   methods: {
-    submitUpload() {
+    submitUpload () {
       this.$refs.uploadMutiple.submit();
     },
-    handleRemove(file, fileList) {
+    handleRemove (file, fileList) {
       this.$emit("on-remove", file, fileList);
     },
-    handlePreview(file) {
+    handlePreview (file) {
       this.$emit("on-preview", file);
     },
-    handleExceed() {
+    handleExceed () {
       this.$message.warning(
         `Only ${this.limit} file can be uploaded at a time`
       );
     },
-    beforeRemove(file) {
+    beforeRemove (file) {
       return this.$confirm(`Confirm Delete ${file.name}?`);
     },
-    handleSuccess(response, file, fileList) {
+    handleSuccess (response, file, fileList) {
       this.fileList = fileList;
       this.$emit("on-success", file, fileList);
-      
     },
-    toShowList() {
+    toShowList () {
       this.$router.push("/filelist");
     },
-    handleChange(file,fileList) {
+    handleChange (file, fileList) {
       // console.log(file);
       this.fileList = fileList;
     },
 
-    handleUpload(option) {
+    handleUpload (option) {
       const loading = this.$loading({
         lock: true,
         text: "Loading",
         spinner: "el-icon-loading",
         background: "rgba(0, 0, 0, 0.7)",
       });
-      
 
       console.log(option);
       put(option.file.name, option.file)
@@ -151,10 +138,10 @@ export default {
           console.log(error);
         });
     },
-    clearList() {
+    clearList () {
       this.fileList = [];
     },
-    setBtnDisable() {
+    setBtnDisable () {
       if (this.fileList.length == 0) {
         this.isDisable = true;
       } else {
@@ -164,11 +151,10 @@ export default {
   },
   watch: {
     fileList: {
-      handler() {
-      
+      handler () {
         this.setBtnDisable();
       },
-      deep:true
+      deep: true,
     },
   },
 };
