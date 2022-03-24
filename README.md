@@ -6,6 +6,8 @@
 git clone git@github.com:Amero0610/vue-storepage.git
 ```
 
+### Install dependencies
+
 ```shell
 npm install
 ```
