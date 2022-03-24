@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:45
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 10:53:52
+ * @LastEditTime: 2022-03-24 12:25:45
  * @FilePath: \vue-storepage\src\views\uploadPageView.vue
  * @email: vian8416@163.com
 -->
@@ -22,6 +22,7 @@
                :on-exceed="handleExceed"
                :file-list="fileList"
                :list-type="listType"
+               :on-progress="handleProcess"
                :auto-upload="false">
       <el-button plain
                  slot="trigger"
@@ -49,7 +50,7 @@
 </template>
 <script>
 import { put } from '../../public/ali-oss';
-
+var uploadFileCount = 0;
 export default {
   props: {
     limit: {
@@ -93,9 +94,11 @@ export default {
         `Only ${this.limit} file can be uploaded at a time`
       );
     },
+
     beforeRemove (file) {
       return this.$confirm(`Confirm Delete ${file.name}?`);
     },
+    handleProcess () { },
     handleSuccess (response, file, fileList) {
       this.fileList = fileList;
       this.$emit('on-success', file, fileList);
@@ -104,8 +107,8 @@ export default {
       this.$router.push('/filelist');
     },
     handleChange (file, fileList) {
-      // console.log(file);
       this.fileList = fileList;
+      uploadFileCount = this.fileList.length;
     },
 
     handleUpload (option) {
@@ -115,12 +118,12 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.7)',
       });
-
-      console.log(option);
       put(option.file.name, option.file)
-        .then((res) => {
-          console.log(res);
-          loading.close();
+        .then(() => {
+          uploadFileCount--;
+          if (uploadFileCount == 0) {
+            loading.close();
+          }
           this.$notify({
             title: 'Tip',
             message: 'Upload Success',
@@ -128,15 +131,19 @@ export default {
           });
           this.clearList();
         })
-        .catch((error) => {
-          loading.close();
+        .catch(() => {
+          uploadFileCount--;
+          if (uploadFileCount == 0) {
+            loading.close();
+          }
           this.$notify({
             title: 'Tip',
             message: 'Upload Failed!',
             type: 'error',
           });
-          console.log(error);
         });
+
+
     },
     clearList () {
       this.fileList = [];
