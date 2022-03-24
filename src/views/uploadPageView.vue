@@ -2,34 +2,13 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:45
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 12:25:45
+ * @LastEditTime: 2022-03-25 01:23:58
  * @FilePath: \vue-storepage\src\views\uploadPageView.vue
  * @email: vian8416@163.com
 -->
 <template>
   <div>
-    <el-upload ref="uploadMutiple"
-               class="upload-demo"
-               action
-               :http-request="handleUpload"
-               :on-preview="handlePreview"
-               :on-remove="handleRemove"
-               :on-success="handleSuccess"
-               :before-remove="beforeRemove"
-               :on-change="handleChange"
-               multiple
-               :limit="limit"
-               :on-exceed="handleExceed"
-               :file-list="fileList"
-               :list-type="listType"
-               :on-progress="handleProcess"
-               :auto-upload="false">
-      <el-button plain
-                 slot="trigger"
-                 size="normal"
-                 type="primary"
-                 class="uploadpageButton"
-                 icon="el-icon-folder-add">Select file</el-button>
+    <div>
       <el-button :disabled="isDisable"
                  plain
                  class="uploadpageButton"
@@ -37,6 +16,7 @@
                  type="success"
                  @click="submitUpload"
                  icon="el-icon-upload2">Upload to server</el-button>
+
       <el-button :disabled="isDisable"
                  plain
                  type="primary"
@@ -45,7 +25,46 @@
                  icon="el-icon-delete"
                  size="normal">
         Clear List</el-button>
-    </el-upload>
+    </div>
+    <el-row type="flex"
+            justify="center">
+
+      <el-col :span="6"
+              :xs="23"
+              :xl="6"
+              :lg="6"
+              :md="6">
+        <el-upload ref="uploadMutiple"
+                   class="upload-demo"
+                   action
+                   drag
+                   :http-request="handleUpload"
+                   :on-preview="handlePreview"
+                   :on-remove="handleRemove"
+                   :on-success="handleSuccess"
+                   :before-remove="beforeRemove"
+                   :on-change="handleChange"
+                   multiple
+                   :limit="limit"
+                   :on-exceed="handleExceed"
+                   :file-list="fileList"
+                   :list-type="listType"
+                   :on-progress="handleProcess"
+                   :auto-upload="false">
+          <!-- <el-button plain
+                 slot="trigger"
+                 size="normal"
+                 type="primary"
+                 class="uploadpageButton"
+                 icon="el-icon-folder-add">Select file</el-button> -->
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">
+            Drag files here, or <em>click Upload</em>
+          </div>
+        </el-upload>
+      </el-col>
+
+    </el-row>
   </div>
 </template>
 <script>
@@ -142,8 +161,6 @@ export default {
             type: 'error',
           });
         });
-
-
     },
     clearList () {
       this.fileList = [];

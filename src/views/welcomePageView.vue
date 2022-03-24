@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:21:34
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 12:36:50
+ * @LastEditTime: 2022-03-25 01:26:39
  * @FilePath: \vue-storepage\src\views\welcomePageView.vue
  * @email: vian8416@163.com
 -->
@@ -10,11 +10,11 @@
   <div id="welcomepage">
     <el-row type="flex"
             justify="center">
-      <el-col :xs="9"
-              :xl="5"
-              :span="5"
-              :lg="5"
-              :md="5">
+      <el-col :xs="12"
+              :xl="6"
+              :span="12"
+              :lg="6"
+              :md="6">
         <el-button type="primary"
                    round
                    @click="toListPage"
@@ -23,11 +23,11 @@
           Show File List
         </el-button>
       </el-col>
-      <el-col :xs="9"
-              :xl="5"
-              :span="5"
-              :lg="5"
-              :md="5">
+      <el-col :xs="12"
+              :xl="6"
+              :span="12"
+              :lg="6"
+              :md="6">
         <el-button type="primary"
                    round
                    @click="toUploadPage"

@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:19:34
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-25 00:43:26
+ * @LastEditTime: 2022-03-25 01:13:14
  * @FilePath: \vue-storepage\src\App.vue
  * @email: vian8416@163.com
 -->
@@ -35,11 +35,13 @@ export default {
 
   color: #2c3e50;
   margin-top: 60px;
-  min-width: 430px;
+  min-width: 360px;
+  margin: 0px;
+  padding: 0px;
 }
 #showArea {
   margin-top: 20px;
-  min-width: 430px;
+  min-width: 390px;
 }
 .fade-enter {
   opacity: 0;
