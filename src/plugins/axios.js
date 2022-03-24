@@ -2,14 +2,14 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:12:50
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-23 20:12:50
+ * @LastEditTime: 2022-03-24 10:53:27
  * @FilePath: \vue-storepage\src\plugins\axios.js
  * @email: vian8416@163.com
  */
-"use strict";
+'use strict';
 
 import Vue from 'vue';
-import axios from "axios";
+import axios from 'axios';
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -25,11 +25,11 @@ let config = {
 const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
-  function(config) {
+  function (config) {
     // Do something before request is sent
     return config;
   },
-  function(error) {
+  function (error) {
     // Do something with request error
     return Promise.reject(error);
   }
@@ -37,33 +37,33 @@ _axios.interceptors.request.use(
 
 // Add a response interceptor
 _axios.interceptors.response.use(
-  function(response) {
+  function (response) {
     // Do something with response data
     return response;
   },
-  function(error) {
+  function (error) {
     // Do something with response error
     return Promise.reject(error);
   }
 );
 
-Plugin.install = function(Vue) {
+Plugin.install = function (Vue) {
   Vue.axios = _axios;
   window.axios = _axios;
   Object.defineProperties(Vue.prototype, {
     axios: {
       get() {
         return _axios;
-      }
+      },
     },
     $axios: {
       get() {
         return _axios;
-      }
+      },
     },
   });
 };
 
-Vue.use(Plugin)
+Vue.use(Plugin);
 
 export default Plugin;

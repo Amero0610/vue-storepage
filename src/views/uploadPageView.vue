@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:45
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 10:39:41
+ * @LastEditTime: 2022-03-24 10:53:52
  * @FilePath: \vue-storepage\src\views\uploadPageView.vue
  * @email: vian8416@163.com
 -->
@@ -48,7 +48,7 @@
   </div>
 </template>
 <script>
-import { put } from "../../public/ali-oss";
+import { put } from '../../public/ali-oss';
 
 export default {
   props: {
@@ -58,7 +58,7 @@ export default {
     },
     action: {
       type: String,
-      default: "",
+      default: '',
     },
     headers: {
       type: Object,
@@ -66,11 +66,11 @@ export default {
     },
     name: {
       type: String,
-      default: "",
+      default: '',
     },
     listType: {
       type: String,
-      default: "text",
+      default: 'text',
     },
   },
   data: () => ({
@@ -83,10 +83,10 @@ export default {
       this.$refs.uploadMutiple.submit();
     },
     handleRemove (file, fileList) {
-      this.$emit("on-remove", file, fileList);
+      this.$emit('on-remove', file, fileList);
     },
     handlePreview (file) {
-      this.$emit("on-preview", file);
+      this.$emit('on-preview', file);
     },
     handleExceed () {
       this.$message.warning(
@@ -98,10 +98,10 @@ export default {
     },
     handleSuccess (response, file, fileList) {
       this.fileList = fileList;
-      this.$emit("on-success", file, fileList);
+      this.$emit('on-success', file, fileList);
     },
     toShowList () {
-      this.$router.push("/filelist");
+      this.$router.push('/filelist');
     },
     handleChange (file, fileList) {
       // console.log(file);
@@ -111,9 +111,9 @@ export default {
     handleUpload (option) {
       const loading = this.$loading({
         lock: true,
-        text: "Loading",
-        spinner: "el-icon-loading",
-        background: "rgba(0, 0, 0, 0.7)",
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)',
       });
 
       console.log(option);
@@ -122,18 +122,18 @@ export default {
           console.log(res);
           loading.close();
           this.$notify({
-            title: "Tip",
-            message: "Upload Success",
-            type: "success",
+            title: 'Tip',
+            message: 'Upload Success',
+            type: 'success',
           });
           this.clearList();
         })
         .catch((error) => {
           loading.close();
           this.$notify({
-            title: "Tip",
-            message: "Upload Failed!",
-            type: "error",
+            title: 'Tip',
+            message: 'Upload Failed!',
+            type: 'error',
           });
           console.log(error);
         });
