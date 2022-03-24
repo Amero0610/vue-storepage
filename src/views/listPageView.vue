@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:30
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 23:46:42
+ * @LastEditTime: 2022-03-25 00:20:08
  * @FilePath: \vue-storepage\src\views\listPageView.vue
  * @email: vian8416@163.com
 -->
@@ -133,6 +133,10 @@ export default {
         confirmButtonText: "Confirm",
         cancelButtonText: "Cancel",
         type: "warning",
+        beforeClose (action, instance, done) {
+          done();
+
+        },
       })
         .then(() => {
           this.deleteItem(_option);
@@ -222,5 +226,17 @@ export default {
   display: none;
 }
 #tablePanel {
+}
+.msgbox-fade-enter {
+  opacity: 0;
+}
+
+.msgbox-fade-enter-active {
+  transition: all 0s ease;
+}
+
+.msgbox-fade-leave-active {
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 </style>

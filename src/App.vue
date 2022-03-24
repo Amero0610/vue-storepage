@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:19:34
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 12:34:23
+ * @LastEditTime: 2022-03-25 00:43:26
  * @FilePath: \vue-storepage\src\App.vue
  * @email: vian8416@163.com
 -->
@@ -31,7 +31,7 @@ export default {
   /* font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif !important;
 
   color: #2c3e50;
   margin-top: 60px;
@@ -53,5 +53,8 @@ export default {
 .fade-leave-active {
   opacity: 0;
   transition: opacity 0.3s;
+}
+* .el-dialog__wrapper {
+  transition-duration: 0.3s !important;
 }
 </style>
