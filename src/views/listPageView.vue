@@ -2,8 +2,8 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:30
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 10:45:29
- * @FilePath: \vue-storepage\src\views\listpageView.vue
+ * @LastEditTime: 2022-03-24 12:42:11
+ * @FilePath: \vue-storepage\src\views\listPageView.vue
  * @email: vian8416@163.com
 -->
 
@@ -24,6 +24,8 @@
         <el-table-column label="Name"
                          property="name"
                          align="left"
+                         width="260"
+                         min-width="260"
                          show-overflow-tooltip>
           <template slot-scope="scope">{{
             scope.row.name | nameFilter
@@ -32,6 +34,7 @@
         <el-table-column label="Size"
                          property="size"
                          align="left"
+                         width="90"
                          min-width="90">
           <template slot-scope="scope">{{
             scope.row.size | sizeFilter
@@ -40,6 +43,7 @@
         <el-table-column label="Time"
                          prop="lastModified"
                          align="left"
+                         width="120"
                          min-width="120">
           <template slot-scope="scope">{{
             scope.row.lastModified | lastModifiedFilter

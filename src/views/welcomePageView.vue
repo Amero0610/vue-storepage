@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:21:34
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-24 10:48:13
+ * @LastEditTime: 2022-03-24 12:36:50
  * @FilePath: \vue-storepage\src\views\welcomePageView.vue
  * @email: vian8416@163.com
 -->
@@ -16,6 +16,7 @@
               :lg="5"
               :md="5">
         <el-button type="primary"
+                   round
                    @click="toListPage"
                    icon="el-icon-tickets"
                    plain>
@@ -28,6 +29,7 @@
               :lg="5"
               :md="5">
         <el-button type="primary"
+                   round
                    @click="toUploadPage"
                    icon="el-icon-upload"
                    plain>Upload File</el-button>
