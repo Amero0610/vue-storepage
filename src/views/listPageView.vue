@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:30
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-25 18:30:46
+ * @LastEditTime: 2022-03-25 22:53:29
  * @FilePath: \vue-storepage\src\views\listPageView.vue
  * @email: vian8416@163.com
 -->
@@ -88,7 +88,7 @@
             <el-button size="mini"
                        type="success"
                        icon="el-icon-copy-document"
-                       @click="copyUrl(scope.row)"
+                       @click="copyUrl"
                        v-clipboard:copy="scope.row.url">Copy</el-button>
             <el-button size="mini"
                        type="danger"
@@ -105,7 +105,7 @@
 </template>
 <script>
 // 
-import { get, deleteItemOSS, getByFolderName } from "../../public/ali-oss";
+import { deleteItemOSS, getByFolderName } from "../../public/ali-oss";
 var INDEX = 1321;
 export default {
   data: () => ({
@@ -165,15 +165,15 @@ export default {
         spinner: "el-icon-loading",
         background: "rgba(0, 0, 0, 0.7)",
       });
-      get().then((result) => {
+      getByFolderName(this.selectValue).then((result) => {
         loading.close();
         this.fileList = result.objects;
-        console.log(result);
+        this.deleteEmptyItem(this.fileList);
       });
     },
     handleCurrentChange () { },
-    copyUrl (option) {
-      console.log(option);
+    copyUrl () {
+
       this.$message({
         type: "success",
         message: "The link has been copied to the clipboard!",
@@ -245,21 +245,14 @@ export default {
     },
     selectValue: {
       handler () {
-        console.log(this.selectValue);
-        getByFolderName(this.selectValue).then(res => {
-          console.log(res);
 
-          this.fileList = res.objects;
-          this.deleteEmptyItem(this.fileList);
-        }).catch(err => {
-          console.log(err);
-        })
+        this.refreshList();
       },
       deep: true
     }
   },
   mounted () {
-    this.refreshList();
+    this.selectValue = "myCloudStore-img/";
     this.setEmptyPanel();
   },
   filters: {
