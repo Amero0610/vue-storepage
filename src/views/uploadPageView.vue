@@ -2,29 +2,57 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:45
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-25 01:23:58
+ * @LastEditTime: 2022-03-25 19:38:14
  * @FilePath: \vue-storepage\src\views\uploadPageView.vue
  * @email: vian8416@163.com
 -->
 <template>
   <div>
-    <div>
-      <el-button :disabled="isDisable"
-                 plain
-                 class="uploadpageButton"
-                 size="normal"
-                 type="success"
-                 @click="submitUpload"
-                 icon="el-icon-upload2">Upload to server</el-button>
+    <div id="uploadBtnPanel">
+      <el-row type="flex"
+              justify="space-around">
+        <el-col :span="5"
+                :xs="11"
+                :xl="4"
+                :lg="4"
+                :md="4">
+          <el-button :disabled="isDisable"
+                     plain
+                     class="uploadpageButton"
+                     size="normal"
+                     type="success"
+                     @click="submitUpload"
+                     icon="el-icon-upload2">Upload to server</el-button>
+        </el-col>
+        <el-col :span="4"
+                :xs="8"
+                :xl="4"
+                :lg="4"
+                :md="4">
+          <el-button :disabled="isDisable"
+                     plain
+                     type="primary"
+                     @click="clearList"
+                     class="uploadpageButton"
+                     icon="el-icon-delete"
+                     size="normal">
+            Clear List</el-button>
+        </el-col>
+        <el-col :span="4"
+                :xs="8"
+                :xl="4"
+                :lg="4"
+                :md="4">
+          <el-select v-model="selectValue"
+                     placeholder="Please Choose">
+            <el-option v-for="item in folderList"
+                       :key="item.value"
+                       :label="item.label"
+                       :value="item.value"></el-option>
+          </el-select>
+        </el-col>
+      </el-row>
 
-      <el-button :disabled="isDisable"
-                 plain
-                 type="primary"
-                 @click="clearList"
-                 class="uploadpageButton"
-                 icon="el-icon-delete"
-                 size="normal">
-        Clear List</el-button>
     </div>
     <el-row type="flex"
             justify="center">
@@ -68,10 +96,11 @@
   </div>
 </template>
 <script>
-import { put } from '../../public/ali-oss';
+import { putByFolderName } from '../../public/ali-oss';
 var uploadFileCount = 0;
 export default {
   props: {
+
     limit: {
       type: Number,
       default: 10,
@@ -94,6 +123,26 @@ export default {
     },
   },
   data: () => ({
+    selectValue: "",
+    folderList: [
+      {
+        value: "myCloudStore-img/",
+        label: "Image"
+      },
+      {
+        value: "myCloudStore-document/",
+        label: "Document"
+      },
+      {
+        value: "myCloudStore-media/",
+        label: "Media"
+      },
+
+      {
+        value: "myCloudStore/",
+        label: "File"
+      }
+    ],
     fileList: [],
     isDisable: true,
   }),
@@ -137,7 +186,8 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.7)',
       });
-      put(option.file.name, option.file)
+      // put(option.file.name, option.file);
+      putByFolderName(this.selectValue, option.file.name, option.file)
         .then(() => {
           uploadFileCount--;
           if (uploadFileCount == 0) {
@@ -186,5 +236,12 @@ export default {
 <style>
 .uploadpageButton {
   margin-left: 10px !important;
+}
+@media (max-width: 600px) {
+  #uploadBtnPanel .el-input__inner {
+    width: 160px;
+    margin-left: 20px;
+    display: inline-block;
+  }
 }
 </style>

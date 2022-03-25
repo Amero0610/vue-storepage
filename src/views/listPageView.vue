@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:30
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-25 00:20:08
+ * @LastEditTime: 2022-03-25 18:30:46
  * @FilePath: \vue-storepage\src\views\listPageView.vue
  * @email: vian8416@163.com
 -->
@@ -10,15 +10,43 @@
 <template>
   <div id="listpage">
     <!-- <el-button type="primary" @click="addItem"> add</el-button> -->
-    <el-button type="primary"
-               plain
-               @click="refreshList"
-               icon="el-icon-notebook-2">Refresh list</el-button>
+    <div id="listpageBtnPanel">
+      <el-row type="flex"
+              justify="flex-start">
+        <el-col :span="4"
+                :xs="9"
+                :xl="4"
+                :lg="4"
+                :md="4">
+          <el-button type="primary"
+                     plain
+                     @click="refreshList"
+                     icon="el-icon-notebook-2">Refresh list</el-button>
+        </el-col>
+        <el-col :span="6"
+                :xs="9"
+                :xl="6"
+                :lg="6"
+                :md="6">
+          <el-select v-model="selectValue"
+                     placeholder="Please Choose">
+            <el-option v-for="item in folderList"
+                       :key="item.value"
+                       :label="item.label"
+                       :value="item.value"></el-option>
+          </el-select>
+        </el-col>
+      </el-row>
+
+    </div>
     <div id="tablePanel">
+
       <el-empty description="No Data"
                 v-if="showEmpty"></el-empty>
+
       <el-table v-if="!showEmpty"
                 :data="fileList"
+                height="80vh"
                 highlight-current-row
                 @current-change="handleCurrentChange">
         <el-table-column label="Name"
@@ -54,6 +82,7 @@
         </el-table-column>
         <el-table-column align="right"
                          min-width="230"
+                         fixed="right"
                          width="230">
           <template slot-scope="scope">
             <el-button size="mini"
@@ -70,14 +99,36 @@
           </template>
         </el-table-column>
       </el-table>
+
     </div>
   </div>
 </template>
 <script>
-import { get, deleteItemOSS } from "../../public/ali-oss";
+// 
+import { get, deleteItemOSS, getByFolderName } from "../../public/ali-oss";
 var INDEX = 1321;
 export default {
   data: () => ({
+    selectValue: "",
+    folderList: [
+      {
+        value: "myCloudStore-img/",
+        label: "Image"
+      },
+      {
+        value: "myCloudStore-document/",
+        label: "Document"
+      },
+      {
+        value: "myCloudStore-media/",
+        label: "Media"
+      },
+
+      {
+        value: "myCloudStore/",
+        label: "File"
+      }
+    ],
     showEmpty: false,
     fileList: [
       // {
@@ -177,6 +228,13 @@ export default {
         this.showEmpty = false;
       }
     },
+    deleteEmptyItem (_List) {
+      for (let i = 0; i < _List.length; i++) {
+        if (_List[i].size == 0) {
+          _List.splice(i, 1);
+        }
+      }
+    },
   },
   watch: {
     fileList: {
@@ -185,6 +243,20 @@ export default {
       },
       deep: true,
     },
+    selectValue: {
+      handler () {
+        console.log(this.selectValue);
+        getByFolderName(this.selectValue).then(res => {
+          console.log(res);
+
+          this.fileList = res.objects;
+          this.deleteEmptyItem(this.fileList);
+        }).catch(err => {
+          console.log(err);
+        })
+      },
+      deep: true
+    }
   },
   mounted () {
     this.refreshList();
@@ -222,10 +294,18 @@ export default {
 };
 </script>
 <style>
+#listpageBtnPanel {
+}
+.el-table__body-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.el-table__body-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgb(212, 212, 212);
+  border-radius: 8px;
+}
 .el-table::before {
   display: none;
-}
-#tablePanel {
 }
 .msgbox-fade-enter {
   opacity: 0;
