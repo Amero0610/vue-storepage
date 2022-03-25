@@ -2,19 +2,16 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:19:34
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-25 15:44:03
+ * @LastEditTime: 2022-03-26 01:01:34
  * @FilePath: \vue-storepage\src\App.vue
  * @email: vian8416@163.com
 -->
 <template>
   <div id="app">
     <mainPage> </mainPage>
-    <transition name="fade"
-                mode="out-in">
+    <transition name="fade" mode="out-in">
       <div id="routerView-panel">
-
         <router-view id="showArea"></router-view>
-
       </div>
     </transition>
   </div>
@@ -43,9 +40,10 @@ export default {
   margin: 0px;
   padding: 0px;
 }
-
+* {
+}
 #showArea {
-  margin-top: 20px;
+  margin-top: 13px;
   min-width: 380px;
 }
 .fade-enter {

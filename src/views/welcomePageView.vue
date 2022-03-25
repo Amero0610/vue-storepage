@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:21:34
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-25 01:26:39
+ * @LastEditTime: 2022-03-26 00:18:14
  * @FilePath: \vue-storepage\src\views\welcomePageView.vue
  * @email: vian8416@163.com
 -->
@@ -40,6 +40,9 @@
 <style>
 #welcomepage * {
   text-align: center;
+}
+#welcomepage {
+  margin-top: 20px;
 }
 </style>
 <script>
