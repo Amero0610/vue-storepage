@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:30
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-27 00:18:08
+ * @LastEditTime: 2022-03-27 00:32:26
  * @FilePath: \vue-storepage\src\views\listPageView.vue
  * @email: vian8416@163.com
 -->
@@ -85,9 +85,9 @@
         </el-table-column>
         <el-table-column
           align="right"
-          min-width="230"
+          min-width="220"
           fixed="right"
-          width="230"
+          width="220"
         >
           <template slot-scope="scope">
             <el-button

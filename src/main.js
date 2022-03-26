@@ -13,10 +13,12 @@ import router from './router';
 import './plugins/element.js';
 import '../public/style/theme/index.css';
 import VueClipboard from 'vue-clipboard2';
+import vuetify from './plugins/vuetify'
 Vue.use(VueClipboard);
 Vue.config.productionTip = false;
 
 new Vue({
-  router,
-  render: (h) => h(App),
+ router,
+ vuetify,
+ render: (h) => h(App)
 }).$mount('#app');

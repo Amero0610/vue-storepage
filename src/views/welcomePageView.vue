@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:21:34
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-27 00:18:22
+ * @LastEditTime: 2022-03-27 00:53:39
  * @FilePath: \vue-storepage\src\views\welcomePageView.vue
  * @email: vian8416@163.com
 -->
@@ -43,6 +43,7 @@
 </style>
 <script>
 export default {
+  components: {},
   data: () => ({}),
   methods: {
     toListPage() {
