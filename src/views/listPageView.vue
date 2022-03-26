@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:30
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-26 00:51:06
+ * @LastEditTime: 2022-03-26 15:49:30
  * @FilePath: \vue-storepage\src\views\listPageView.vue
  * @email: vian8416@163.com
 -->
@@ -119,6 +119,7 @@ import { deleteItemOSS, getByFolderName } from '../../public/ali-oss';
 var INDEX = 1321;
 export default {
   data: () => ({
+    currentRowClassName: '',
     selectValue: '',
     folderList: [
       {
