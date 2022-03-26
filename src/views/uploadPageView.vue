@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:45
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-26 01:06:34
+ * @LastEditTime: 2022-03-26 15:13:05
  * @FilePath: \vue-storepage\src\views\uploadPageView.vue
  * @email: vian8416@163.com
 -->
@@ -239,11 +239,8 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-#uploadpage .select-popper .el-select-dropdown__item {
-  font-family: 'Montserrat' !important;
-}
-
-.select-popper .el-select-dropdown__item {
+.el-select-dropdown__list,
+.el-input__inner {
   font-family: 'Montserrat' !important;
 }
 #uploadArea .el-upload-dragger {

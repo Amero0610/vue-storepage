@@ -2,42 +2,43 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:21:34
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-26 00:18:14
+ * @LastEditTime: 2022-03-26 15:10:21
  * @FilePath: \vue-storepage\src\views\welcomePageView.vue
  * @email: vian8416@163.com
 -->
 <template>
   <div id="welcomepage">
-    <el-row type="flex"
-            justify="center">
-      <el-col :xs="12"
-              :xl="6"
-              :span="12"
-              :lg="6"
-              :md="6">
-        <el-button type="primary"
-                   round
-                   @click="toListPage"
-                   icon="el-icon-tickets"
-                   plain>
+    <el-row type="flex" justify="center">
+      <el-col :xs="12" :xl="6" :span="12" :lg="6" :md="6">
+        <el-button
+          type="primary"
+          round
+          @click="toListPage"
+          icon="el-icon-tickets"
+          plain
+        >
           Show File List
         </el-button>
       </el-col>
-      <el-col :xs="12"
-              :xl="6"
-              :span="12"
-              :lg="6"
-              :md="6">
-        <el-button type="primary"
-                   round
-                   @click="toUploadPage"
-                   icon="el-icon-upload"
-                   plain>Upload File</el-button>
+      <el-col :xs="12" :xl="6" :span="12" :lg="6" :md="6">
+        <el-button
+          type="primary"
+          round
+          @click="toUploadPage"
+          icon="el-icon-upload"
+          plain
+          >Upload File</el-button
+        >
       </el-col>
     </el-row>
   </div>
 </template>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.select-popper .el-select-dropdown__item {
+  font-family: 'Montserrat' !important;
+}
 #welcomepage * {
   text-align: center;
 }
@@ -49,12 +50,11 @@
 export default {
   data: () => ({}),
   methods: {
-    toListPage () {
-
-      this.$router.push("/listpage");
+    toListPage() {
+      this.$router.push('/listpage');
     },
-    toUploadPage () {
-      this.$router.push("/uploadpage");
+    toUploadPage() {
+      this.$router.push('/uploadpage');
     },
   },
 };
