@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:21:34
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-26 15:10:21
+ * @LastEditTime: 2022-03-27 00:18:22
  * @FilePath: \vue-storepage\src\views\welcomePageView.vue
  * @email: vian8416@163.com
 -->
@@ -34,11 +34,6 @@
   </div>
 </template>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-.select-popper .el-select-dropdown__item {
-  font-family: 'Montserrat' !important;
-}
 #welcomepage * {
   text-align: center;
 }

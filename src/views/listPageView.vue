@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:17:30
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-26 15:49:30
+ * @LastEditTime: 2022-03-27 00:18:08
  * @FilePath: \vue-storepage\src\views\listPageView.vue
  * @email: vian8416@163.com
 -->
@@ -298,7 +298,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 #listpage .select-popper .el-select-dropdown__item {
-  font-family: 'Montserrat' !important;
+  /* font-family: 'Montserrat' !important; */
 }
 #listpageBtnPanel {
 }

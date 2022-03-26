@@ -2,7 +2,7 @@
  * @Author: AmeroL
  * @Date: 2022-03-23 20:19:34
  * @LastEditors: AmeroL
- * @LastEditTime: 2022-03-26 01:01:34
+ * @LastEditTime: 2022-03-27 00:19:03
  * @FilePath: \vue-storepage\src\App.vue
  * @email: vian8416@163.com
 -->
@@ -26,13 +26,10 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 #app {
   /* font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
-  font-family: 'Montserrat', sans-serif !important;
 
   color: #2c3e50;
   margin-top: 60px;
